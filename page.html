@@ -58,8 +58,13 @@
 
     // 获取url参数值
     const getUrlField = (key) => {
-        // 直接返回 "site_MChK2kiwY7H"
-        return "site_MChK2kiwY7H";
+        let url = location.search.slice(1).split('&')
+        let urlForm = url.reduce((pre, cur) => {
+            let list = cur.split('=')
+            pre[list[0]] = list[1]
+            return pre
+        }, {})
+        return urlForm[key];
     }
 
     // 获取url的hash值，#后面的内容
